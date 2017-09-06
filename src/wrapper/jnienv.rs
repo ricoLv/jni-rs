@@ -382,7 +382,7 @@ impl<'a> JNIEnv<'a> {
     }
 
     #[allow(dead_code)]
-    fn delete_local_ref(&self, obj: JObject) -> Result<()> {
+    pub fn delete_local_ref(&self, obj: JObject) -> Result<()> {
         non_null!(obj, "delete_local_ref obj argument");
         Ok(unsafe {
             jni_unchecked!(self.internal, DeleteLocalRef, obj.into_inner());
