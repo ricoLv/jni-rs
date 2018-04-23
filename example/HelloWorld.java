@@ -13,21 +13,10 @@ class HelloWorld {
     }
 
     public static void main(String[] args) {
-        String output = HelloWorld.hello("josh");
-        System.out.println(output);
-
-        HelloWorld.factAndCallMeBack(6, new HelloWorld());
-
-        long counter_ptr = counterNew(new HelloWorld());
-
-        for (int i = 0; i < 5; i++) {
-          counterIncrement(counter_ptr);
+        while (true) {
+            String output = HelloWorld.hello("josh");
+            System.out.println(output);
         }
-
-        counterDestroy(counter_ptr);
-
-        System.out.println("Invoking asyncComputation (thread id = " + Thread.currentThread().getId() + ")");
-        asyncComputation(new HelloWorld());
     }
 
     public void factCallback(int res) {
