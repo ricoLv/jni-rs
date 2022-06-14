@@ -69,6 +69,18 @@ impl<'a> JavaVM<'a> {
         }
         Ok(JNIEnv::from(ptr as *mut sys::JNIEnv))
     }
+
+    /// call DetachCurrentThread to release thread
+    pub fn detach_current_thread(&self) -> Result<()> {
+        unsafe {
+            let status = jni_unchecked!(self.internal,
+                                        DetachCurrentThread);
+            if status != sys::JNI_OK {
+                return Err(ErrorKind::JavaException.into());
+            }
+        }
+        Ok(())
+    }
 }
 
 unsafe impl<'a> Send for JavaVM<'a> {}
